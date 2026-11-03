@@ -4,7 +4,6 @@
  LAB ASSESSMENT 1
 */
 
-//testing
 
 #include <iostream>
 #include <fstream>
@@ -274,4 +273,3 @@ int main() {
 }
 
 
-//ALEEYA 
