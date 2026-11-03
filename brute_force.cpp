@@ -19,7 +19,7 @@ using namespace std;
 const int MAX_RECORDS = 200;
 
 // ------------------------------------
-// POKEMON REC
+// POKEMON RECORD
 // ------------------------------------
 
 struct Pokemon {
