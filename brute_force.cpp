@@ -163,12 +163,24 @@ void bubbleSort(Pokemon data[],
     int n,
     Metrics& metrics) {
 
-    // TODO:
-    // Implement Bubble Sort.
-    // Sort in ascending order of Attack.
-    // Include early termination.
-    // Count element comparisons and swaps.
+    for (int i = 0; i < n - 1; i++) {
+        bool swapped = false;
 
+        for (int j = 0; j < n - 1 - i; j++) {
+            metrics.comparisons++;
+
+            if (data[j].attack > data[j + 1].attack) {
+                Pokemon temp = data[j];
+                data[j] = data[j + 1];
+                data[j + 1] = temp;
+                metrics.swaps++;
+                swapped = true;
+            }
+        }
+
+        if (!swapped)
+            break;
+    }
 }
 
 // ------------------------------------
