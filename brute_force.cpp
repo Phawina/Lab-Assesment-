@@ -132,12 +132,29 @@ void selectionSort(Pokemon data[],
     int n,
     Metrics& metrics) {
 
-    // TODO:
     // Implement Selection Sort.
-    // Sort in ascending order of Attack.
-    // Count element comparisons and swaps.
-    // Do not count self-swaps.
+    for (int i = 0; i < n; i++) {
+        
+        int minIndex = i;
+        for (int j = i + 1; j < n; j++)
+        {
+            // Count element comparisons 
+            metrics.comparisons++;
+            if (data[j].attack < data[minIndex].attack)
+                    minIndex = j;
+        }
 
+        // Sort in ascending order of Attack.
+        if (minIndex != i) {
+            Pokemon temp = data[i];
+            data[i] = data[minIndex];
+            data[minIndex] = temp;
+            // Count element swaps.
+            metrics.swaps++;
+        }
+    }
+       
+     // Do not count self-swaps.
 }
 
 // ------------------------------------
