@@ -244,7 +244,7 @@ int main() {
                 "Expected exactly 200 records.");
         }
 
-        cout << "Total records: " << total << endl;
+        cout << "Total Pokemon loaded: " << total << endl;
 
         cout << "\nSample records:\n";
         displayPokemon(pokemon, total);
@@ -257,38 +257,53 @@ int main() {
         copyRecords(pokemon, data100, 100);
         copyRecords(pokemon, data200, 200);
 
-        cout << "\nDataset preparation completed.\n";
+		//Experiment 3: Prepare records in ascending order of Attack
+        Pokemon dataAscending[MAX_RECORDS];
+        copyRecords(pokemon, dataAscending, 200);
+        Metrics temp;
+        selectionSort(dataAscending, 200, temp);
+
+		//Experiment 4: Prepare records in descending order of Attack
+        pokemon dataDescending[MAX_RECORDS];
+        for (int i = 0; i < 200; i++) {
+            dataDescending[i] = dataAscending[199 - i];
+		}
+
+        //Table header
+        cout << "\nEXPERIMENTAL RESULTS\n" << endl;
+        cout << left << setw(15) << "Experiment"
+            << setw(20) << "Algorithm"
+            << setw(15) << "Comparisons"
+            << setw(15) << "Swaps"
+            << setw(20) << "Time (us)"
+			<< endl;
+        cout << string(80, '-') << endl;
+
+
 
         // ---------------------------------
         // EXPERIMENT 1: 100 ORIGINAL
         // ---------------------------------
+        runExperiment(1, data100, 100);
 
-        // TODO: Run both algorithms using
-        // the first 100 records.
 
         // ---------------------------------
         // EXPERIMENT 2: 200 ORIGINAL
         // ---------------------------------
-
-        // TODO: Run both algorithms using
-        // all 200 records.
+		runExperiment(2, data200, 200);
 
         // ---------------------------------
         // EXPERIMENT 3: 200 ASCENDING
         // ---------------------------------
-
-        // TODO: Prepare records in
-        // ascending order of Attack.
-        // Run both algorithms.
-
+		runExperiment(3, dataAscending, 200);
+        
         // ---------------------------------
         // EXPERIMENT 4: 200 DESCENDING
         // ---------------------------------
+		runExperiment(4, dataDescending, 200);
 
-        // TODO: Prepare records in
-        // descending order of Attack.
-        // Run both algorithms.
-
+        cout << "\nAll experiments completed.\n";
+        
     }
     catch (const exception& e) {
 
