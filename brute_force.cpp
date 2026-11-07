@@ -220,21 +220,19 @@ void runExperiment(int experiment,
 	copyRecords(input, bubbleData, n);
    
 	Metrics metricsSelection;
-    double timeSelection = measureTime(
-		selectionSort, selectionData, n, metricsSelection);
+    double timeSelection = measureTime(selectionSort, selectionData, n, metricsSelection);
     
 	Metrics metricsBubble;
     double timeBubble = measureTime(bubbleSort, bubbleData, n, metricsBubble);
   
-    cout << left << setw(15) << ("Exp " + to_string(experiment)) << setw(20) << "Selection Sort"
+    cout << left << setw(15) << experiment << setw(20) << "Selection Sort"
         << setw(15) << metricsSelection.comparisons << setw(15) << metricsSelection.swaps
         << setw(20) << fixed << setprecision(2) << timeSelection << endl;
 
-    cout << left << setw(15) << " " << setw(20) << "Bubble Sort" << setw(15)
+    cout << left << setw(15) << experiment << setw(20) << "Bubble Sort" << setw(15)
         << metricsBubble.comparisons << setw(15) << metricsBubble.swaps << setw(20)
         << fixed << setprecision(2) << timeBubble << endl;
 
-    cout << string(80, '-') << endl;
 }
 
 // ------------------------------------
