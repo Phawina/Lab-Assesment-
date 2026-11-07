@@ -213,14 +213,28 @@ void runExperiment(int experiment,
     const Pokemon input[],
     int n) {
 
-    // TODO:
-    // 1. Make separate copies of input.
-    // 2. Run Selection Sort.
-    // 3. Run Bubble Sort.
-    // 4. Record comparisons and swaps.
-    // 5. Measure execution time.
-    // 6. Display the results.
+	Pokemon selectionData[MAX_RECORDS];
+	Pokemon bubbleData[MAX_RECORDS];
 
+	copyRecords(input, selectionData, n);
+	copyRecords(input, bubbleData, n);
+   
+	Metrics metricsSelection;
+    double timeSelection = measureTime(
+		selectionSort, selectionData, n, metricsSelection);
+    
+	Metrics metricsBubble;
+    double timeBubble = measureTime(bubbleSort, bubbleData, n, metricsBubble);
+  
+    cout << left << setw(15) << ("Exp " + to_string(experiment)) << setw(20) << "Selection Sort"
+        << setw(15) << metricsSelection.comparisons << setw(15) << metricsSelection.swaps
+        << setw(20) << fixed << setprecision(2) << timeSelection << endl;
+
+    cout << left << setw(15) << " " << setw(20) << "Bubble Sort" << setw(15)
+        << metricsBubble.comparisons << setw(15) << metricsBubble.swaps << setw(20)
+        << fixed << setprecision(2) << timeBubble << endl;
+
+    cout << string(80, '-') << endl;
 }
 
 // ------------------------------------
@@ -278,7 +292,6 @@ int main() {
             << setw(20) << "Time (us)"
 			<< endl;
         cout << string(80, '-') << endl;
-
 
 
         // ---------------------------------
