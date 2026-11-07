@@ -278,7 +278,7 @@ int main() {
         selectionSort(dataAscending, 200, temp);
 
 		//Experiment 4: Prepare records in descending order of Attack
-        pokemon dataDescending[MAX_RECORDS];
+        Pokemon dataDescending[MAX_RECORDS];
         for (int i = 0; i < 200; i++) {
             dataDescending[i] = dataAscending[199 - i];
 		}
