@@ -134,14 +134,14 @@ void selectionSort(Pokemon data[],
 
     // Implement Selection Sort
     for (int i = 0; i < n; i++) {
-        
+
         int minIndex = i;
         for (int j = i + 1; j < n; j++)
         {
             // Count element comparisons 
             metrics.comparisons++;
             if (data[j].attack < data[minIndex].attack)
-                    minIndex = j;
+                minIndex = j;
         }
         // Sort in ascending order of Attack.
         if (minIndex != i) {
@@ -152,7 +152,7 @@ void selectionSort(Pokemon data[],
             metrics.swaps++;
         }
     }
-       
+
 }
 
 // ------------------------------------
@@ -213,18 +213,18 @@ void runExperiment(int experiment,
     const Pokemon input[],
     int n) {
 
-	Pokemon selectionData[MAX_RECORDS];
-	Pokemon bubbleData[MAX_RECORDS];
+    Pokemon selectionData[MAX_RECORDS];
+    Pokemon bubbleData[MAX_RECORDS];
 
-	copyRecords(input, selectionData, n);
-	copyRecords(input, bubbleData, n);
-   
-	Metrics metricsSelection;
+    copyRecords(input, selectionData, n);
+    copyRecords(input, bubbleData, n);
+
+    Metrics metricsSelection;
     double timeSelection = measureTime(selectionSort, selectionData, n, metricsSelection);
-    
-	Metrics metricsBubble;
+
+    Metrics metricsBubble;
     double timeBubble = measureTime(bubbleSort, bubbleData, n, metricsBubble);
-  
+
     cout << left << setw(15) << experiment << setw(20) << "Selection Sort"
         << setw(15) << metricsSelection.comparisons << setw(15) << metricsSelection.swaps
         << setw(20) << fixed << setprecision(2) << timeSelection << endl;
@@ -242,7 +242,7 @@ void runExperiment(int experiment,
 int main() {
 
     // Replace the file name with your dataset name
-    string filename = "pokemon_dataset_A.csv";
+    string filename = "pokemon_dataset_B.csv";
 
     try {
 
@@ -269,17 +269,17 @@ int main() {
         copyRecords(pokemon, data100, 100);
         copyRecords(pokemon, data200, 200);
 
-		//Experiment 3: Prepare records in ascending order of Attack
+        //Experiment 3: Prepare records in ascending order of Attack
         Pokemon dataAscending[MAX_RECORDS];
         copyRecords(pokemon, dataAscending, 200);
         Metrics temp;
         selectionSort(dataAscending, 200, temp);
 
-		//Experiment 4: Prepare records in descending order of Attack
+        //Experiment 4: Prepare records in descending order of Attack
         Pokemon dataDescending[MAX_RECORDS];
         for (int i = 0; i < 200; i++) {
             dataDescending[i] = dataAscending[199 - i];
-		}
+        }
 
         //Table header
         cout << "\nEXPERIMENTAL RESULTS\n" << endl;
@@ -288,7 +288,7 @@ int main() {
             << setw(15) << "Comparisons"
             << setw(15) << "Swaps"
             << setw(20) << "Time (us)"
-			<< endl;
+            << endl;
         cout << string(80, '-') << endl;
 
 
@@ -301,20 +301,20 @@ int main() {
         // ---------------------------------
         // EXPERIMENT 2: 200 ORIGINAL
         // ---------------------------------
-		runExperiment(2, data200, 200);
+        runExperiment(2, data200, 200);
 
         // ---------------------------------
         // EXPERIMENT 3: 200 ASCENDING
         // ---------------------------------
-		runExperiment(3, dataAscending, 200);
-        
+        runExperiment(3, dataAscending, 200);
+
         // ---------------------------------
         // EXPERIMENT 4: 200 DESCENDING
         // ---------------------------------
-		runExperiment(4, dataDescending, 200);
+        runExperiment(4, dataDescending, 200);
 
         cout << "\nAll experiments completed.\n";
-        
+
     }
     catch (const exception& e) {
 
